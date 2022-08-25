@@ -2,16 +2,29 @@
 
     <div class="card-body">
 
-        <ul class="list-group list-group-flush">
-        <!--<ul class="list-group list-group-flush" *ngFor="let item of itens">-->
+        <div class="d-flex flex-row my-3">
+            <input #taskInput (keyup.enter)="addTask( taskInput.value ); taskInput.value='' " type="text" class="form-control w-50 mx-3 " placeholder="New Task" aria-label="New Task" aria-describedby="basic-addon1">
+            <button (click)="addTask( taskInput.value ); taskInput.value='' " class="btn btn-primary">Add</button>
+        </div>
+
+        <div class="d-flex flex-row my-3">
+            <input type="text" class="form-control w-50 mx-3 " placeholder="Search" aria-label="Search" aria-describedby="basic-addon1">
+            <button class="btn btn-secondary ">Search</button>
+            <div class="dropdown">
+                <button  class="btn btn-secondary dropdown-toggle mx-3" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Filter
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </div>
+        </div>
+
+        <ul class="list-group list-group-flush" *ngFor="let task of tasks">
             <li class="list-group-item">
-                <app-item></app-item>
-            </li>
-            <li class="list-group-item">
-                <app-item></app-item>
-            </li>
-            <li class="list-group-item">
-                <app-item></app-item>
+                <app-item [task]="task" (remove)="removeTask($event)"></app-item>
             </li>
         </ul>
 
