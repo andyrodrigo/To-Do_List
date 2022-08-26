@@ -9,6 +9,8 @@ import { ItemToDo } from '../../interfaces/item-to-do';
 
 export class ItemComponent implements OnInit {
 
+  edition = false
+
   //From the Parent
   @Input() task: ItemToDo= {
     id: 0,
@@ -19,20 +21,19 @@ export class ItemComponent implements OnInit {
   //To the Parent
   @Output() remove: EventEmitter<any> = new EventEmitter;
   @Output() edit: EventEmitter<any> = new EventEmitter;
+  @Output() change: EventEmitter<any> = new EventEmitter;
 
   constructor() { }
 
-  ngOnInit(): void {
-    //this.markAsDone();
-  }
+  ngOnInit(): void {}
 
   //Functions:
 
-  removeTask():void{
+  removeTask(): void{
     this.remove.emit(this.task)
   }
   
-  markAsDone():void{
+  markAsDone(): void{
     if(this.task.done === false){
       this.task.done = true
     }else{
@@ -40,6 +41,19 @@ export class ItemComponent implements OnInit {
     }
     this.edit.emit(this.task)
     console.log( this.task )
+  }
+
+  editTask(): void{
+    if(this.edition === false){
+      this.edition = true
+    }else{
+      this.edition = false
+    }
+  }
+
+  changeTask( newTask: string ): void{
+    this.task.title = newTask
+    this.change.emit(this.task)
   }
 
 }

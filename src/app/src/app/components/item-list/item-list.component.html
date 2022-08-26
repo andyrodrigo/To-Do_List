@@ -1,14 +1,14 @@
-<div class="card" style="width: 800px;">
+<div class="card" >
 
     <div class="card-body">
 
         <div class="d-flex flex-row my-3 ">
-            <input #taskInput (keyup.enter)="addTask( taskInput.value ); taskInput.value='' " type="text" class="form-control w-50 mx-3 border border-primary" placeholder="New Task" aria-label="New Task" aria-describedby="basic-addon1">
-            <button (click)="addTask( taskInput.value ); taskInput.value='' " class="btn btn-primary"><strong>Add</strong> </button>
+            <input #taskInput (keyup.enter)="addTask( taskInput.value ); taskInput.value='' " type="text" class="form-control w-50 mx-3 border border-primary" [placeholder]="newtaskPlaceholderName" aria-label="New Task" aria-describedby="basic-addon1">
+            <button (click)="addTask( taskInput.value ); taskInput.value='' " class="btn btn-primary"><strong> {{addButtonName}} </strong> </button>
         </div>
 
         <div class="d-flex flex-row my-3">
-            <input #searchInput (keyup)="filterBy( searchInput.value )" type="text" class="form-control w-50 mx-3 border border-primary" placeholder="Search" aria-label="Search" aria-describedby="basic-addon1">
+            <input #searchInput (keyup)="filterBy( searchInput.value )" type="text" class="form-control w-50 mx-3 border border-primary" [placeholder]="searchPlaceholderName" aria-label="Search" aria-describedby="basic-addon1">
             <button (click)= "searchInput.value='' ; filter(2)"  class="btn btn-secondary" style="width: 60px; height: 40px">
               <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-backspace" viewBox="0 0 16 18">
                 <path d="M5.83 5.146a.5.5 0 0 0 0 .708L7.975 8l-2.147 2.146a.5.5 0 0 0 .707.708l2.147-2.147 2.146 2.147a.5.5 0 0 0 .707-.708L9.39 8l2.146-2.146a.5.5 0 0 0-.707-.708L8.683 7.293 6.536 5.146a.5.5 0 0 0-.707 0z"/>
@@ -17,18 +17,18 @@
             </button>
             <div class="dropdown">
                 <button (mouseover)="menu.classList.add('show')" (mouseleave)="menu.classList.remove('show')" class="btn btn-secondary dropdown-toggle mx-3" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Filter
+                  {{filterButtonName}}
                 </button>
                 <div #menu class="dropdown-menu" (mouseover)="menu.classList.add('show')" (mouseleave)="menu.classList.remove('show')" aria-labelledby="dropdownMenuButton">
-                  <a (click)="filter(2); menu.classList.remove('show')" class="dropdown-item" href="#">All</a>
-                  <a (click)="filter(1); menu.classList.remove('show')" class="dropdown-item" href="#">Done</a>
-                  <a (click)="filter(0); menu.classList.remove('show')" class="dropdown-item" href="#">Undone</a>
+                  <a (click)="filter(2); menu.classList.remove('show')" class="dropdown-item menuItem" href="#"> {{dropItemAllName}} </a>
+                  <a (click)="filter(1); menu.classList.remove('show')" class="dropdown-item menuItem" href="#"> {{dropItemDoneName}} </a>
+                  <a (click)="filter(0); menu.classList.remove('show')" class="dropdown-item menuItem" href="#"> {{dropItemUndoneName}} </a>
                 </div>
               </div>
         </div>
 
         <div class="mx-3" *ngFor="let task of showTasks">
-          <app-item [task]="task" (remove)="removeTask($event)" (edit)="editTask($event)"></app-item>
+          <app-item [task]="task" (remove)="removeTask($event)" (edit)="editTask($event)" (change)="changeTask($event)"></app-item>
         </div>
 
     </div>

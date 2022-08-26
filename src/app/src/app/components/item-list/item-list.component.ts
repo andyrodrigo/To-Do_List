@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ItemToDo } from '../../interfaces/item-to-do';
 
 @Component({
@@ -11,6 +11,16 @@ export class ItemListComponent implements OnInit {
   tasks: Array<ItemToDo> = [];
   showTasks: Array<ItemToDo> = [];
 
+  @Input() eng_version: boolean = false ;
+
+  addButtonName = "Add"
+  filterButtonName = "Filter"
+  dropItemAllName = "ALL"
+  dropItemDoneName = "DONE"
+  dropItemUndoneName = "UNDONE"
+  searchPlaceholderName = "Search"
+  newtaskPlaceholderName = "New Task"
+
   constructor() { }
 
   ngOnInit(): void {
@@ -21,13 +31,14 @@ export class ItemListComponent implements OnInit {
     }else{
       this.tasks = [];
     }
-    console.log("update")
     this.showTasks = this.tasks
+    this.changeLanguage()
+    this.changeLanguage()
   }
 
   //Functions:
   addTask( title: string ){
-    console.log( title )
+    console.log( this.eng_version )
     const id = this.tasks.length + 1;
     this.tasks.push({
       id: id,
@@ -45,11 +56,37 @@ export class ItemListComponent implements OnInit {
 
   editTask(task: any){
     let index = this.tasks.indexOf(task);
-    let b = task.done 
-    console.log( b )
-    this.tasks[index].done = b
-    console.log(this.tasks[index].done )
+    this.tasks[index].done = task.done
     localStorage.setItem('tasks', JSON.stringify(this.tasks) )
+  }
+
+  changeTask(task: any){
+    let index = this.tasks.indexOf(task);
+    this.tasks[index].title = task.title
+    localStorage.setItem('tasks', JSON.stringify(this.tasks) )
+  }
+
+  changeLanguage(){
+    if(this.eng_version){
+      this.eng_version = false;
+      this.addButtonName = "Adicionar"
+      this.filterButtonName = "Filtrar"
+      this.dropItemAllName = "TODOS"
+      this.dropItemDoneName = "FEITOS"
+      this.dropItemUndoneName = "NÃO FEITOS"
+      this.searchPlaceholderName = "Buscar"
+      this.newtaskPlaceholderName = "Nova Tarefa"
+    }else{
+      this.eng_version = true;
+      this.addButtonName = "Add"
+      this.filterButtonName = "Filter"
+      this.dropItemAllName = "ALL"
+      this.dropItemDoneName = "DONE"
+      this.dropItemUndoneName = "UNDONE"
+      this.searchPlaceholderName = "Search"
+      this.newtaskPlaceholderName = "New Task"
+
+    }
   }
 
   filterBy( input: string ){    

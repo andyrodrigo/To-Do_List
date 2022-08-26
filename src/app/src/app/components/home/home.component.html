@@ -1,13 +1,19 @@
 
-<main class="d-flex justify-content-center my-5" >
+<main class="d-flex justify-content-center my-5 container" >
   <div class="card text-white" style="background-color: rgb(35,98,204)">
 
     <div class="card-body d-flex flex-column align-items-center">
 
-      <h2 class="card-title my-3">TO-DO-LIST</h2>
-      <h4 class="card-subtitle mb-2 text-black">Welcome, Anderson!</h4>
+      <h2 class="card-title my-3"> {{ appName }} </h2>
 
-      <app-item-list></app-item-list>
+      <div class="form-check form-switch">
+        <input (click)="changeLanguage(); itemList.changeLanguage()" class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+        <label class="form-check-label" for="flexSwitchCheckDefault">English Version</label>
+      </div>
+
+      <h4 class="card-subtitle my-2 mb-2 text-black"> {{ welcomeMSG }} </h4>
+
+      <app-item-list #itemList [eng_version]= "eng_version" ></app-item-list>
 
     </div>
 
