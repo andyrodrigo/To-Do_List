@@ -2,14 +2,19 @@
 
     <div class="card-body">
 
-        <div class="d-flex flex-row my-3">
-            <input #taskInput (keyup.enter)="addTask( taskInput.value ); taskInput.value='' " type="text" class="form-control w-50 mx-3 " placeholder="New Task" aria-label="New Task" aria-describedby="basic-addon1">
-            <button (click)="addTask( taskInput.value ); taskInput.value='' " class="btn btn-primary">Add</button>
+        <div class="d-flex flex-row my-3 ">
+            <input #taskInput (keyup.enter)="addTask( taskInput.value ); taskInput.value='' " type="text" class="form-control w-50 mx-3 border border-primary" placeholder="New Task" aria-label="New Task" aria-describedby="basic-addon1">
+            <button (click)="addTask( taskInput.value ); taskInput.value='' " class="btn btn-primary"><strong>Add</strong> </button>
         </div>
 
         <div class="d-flex flex-row my-3">
-            <input type="text" class="form-control w-50 mx-3 " placeholder="Search" aria-label="Search" aria-describedby="basic-addon1">
-            <button class="btn btn-secondary ">Search</button>
+            <input type="text" class="form-control w-50 mx-3 border border-primary" placeholder="Search" aria-label="Search" aria-describedby="basic-addon1">
+            <button class="btn btn-secondary" style="width: 60px; height: 40px">
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-backspace" viewBox="0 0 16 18">
+                <path d="M5.83 5.146a.5.5 0 0 0 0 .708L7.975 8l-2.147 2.146a.5.5 0 0 0 .707.708l2.147-2.147 2.146 2.147a.5.5 0 0 0 .707-.708L9.39 8l2.146-2.146a.5.5 0 0 0-.707-.708L8.683 7.293 6.536 5.146a.5.5 0 0 0-.707 0z"/>
+                <path d="M13.683 1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-7.08a2 2 0 0 1-1.519-.698L.241 8.65a1 1 0 0 1 0-1.302L5.084 1.7A2 2 0 0 1 6.603 1h7.08zm-7.08 1a1 1 0 0 0-.76.35L1 8l4.844 5.65a1 1 0 0 0 .759.35h7.08a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1h-7.08z"/>
+              </svg>
+            </button>
             <div class="dropdown">
                 <button  class="btn btn-secondary dropdown-toggle mx-3" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Filter
@@ -22,12 +27,9 @@
               </div>
         </div>
 
-        <ul class="list-group list-group-flush" *ngFor="let task of tasks">
-            <li class="list-group-item">
-                <app-item [task]="task" (remove)="removeTask($event)"></app-item>
-            </li>
-        </ul>
-
+        <div class="mx-3" *ngFor="let task of tasks">
+          <app-item [task]="task" (remove)="removeTask($event)" (edit)="editTask($event)"></app-item>
+        </div>
 
     </div>
 

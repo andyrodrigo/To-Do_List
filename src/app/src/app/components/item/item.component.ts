@@ -6,6 +6,7 @@ import { ItemToDo } from '../../interfaces/item-to-do';
   templateUrl: './item.component.html',
   styleUrls: ['./item.component.css']
 })
+
 export class ItemComponent implements OnInit {
   //From the Parent
   @Input() task: ItemToDo= {
@@ -15,6 +16,7 @@ export class ItemComponent implements OnInit {
   }
   //To the Parent
   @Output() remove: EventEmitter<any> = new EventEmitter;
+  @Output() edit: EventEmitter<any> = new EventEmitter;
 
   done = false;
 
@@ -31,6 +33,7 @@ export class ItemComponent implements OnInit {
   
   markAsDone():void{
     this.done = true;
+    this.edit.emit(this.task)
   }
 
 }

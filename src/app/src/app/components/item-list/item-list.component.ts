@@ -13,13 +13,13 @@ export class ItemListComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    //let itens: any = localStorage.getItem('todos');
-    //let tasks = JSON.parse( tasks )
-    //if(!tasks){
-      //this.tasks = [{id: 1, title: "task", done: false }];
-    //}else{
-     // this.tasks = tasks;
-    //}
+    let itens: any = localStorage.getItem('tasks');
+    let oldTasks = JSON.parse( itens )
+    if(!oldTasks){
+      this.tasks = [];
+    }else{
+      this.tasks = oldTasks;
+    }
   }
 
   //Functions:
@@ -31,15 +31,24 @@ export class ItemListComponent implements OnInit {
       title: title,
       done: false
     })
-    console.log( this.tasks )
-    //localStorage.setItem('tasks', JSON.stringify(this.tasks) )
-
+    localStorage.setItem('tasks', JSON.stringify(this.tasks) )
   }
 
   removeTask(task: any){
     let index = this.tasks.indexOf(task);
     this.tasks.splice(index, 1);
     localStorage.setItem('tasks', JSON.stringify(this.tasks) )
+  }
+
+  editTask(task: any){
+    let index = this.tasks.indexOf(task);
+    this.tasks[index].done = true
+    localStorage.setItem('tasks', JSON.stringify(this.tasks) )
+
+    //let index = this.tasks.indexOf(task);
+    //Pinçar a task dentro de tasks e mudar seu done de false para true
+    //this.tasks.filter(task, index,)   //( (task) => task.done = true);
+    //localStorage.setItem('tasks', JSON.stringify(this.tasks.filter(task, index) ) )
   }
 
 }
