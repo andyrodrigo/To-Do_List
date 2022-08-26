@@ -8,21 +8,22 @@ import { ItemToDo } from '../../interfaces/item-to-do';
 })
 
 export class ItemComponent implements OnInit {
+
   //From the Parent
   @Input() task: ItemToDo= {
     id: 0,
     title: '',
     done: false
   }
+
   //To the Parent
   @Output() remove: EventEmitter<any> = new EventEmitter;
   @Output() edit: EventEmitter<any> = new EventEmitter;
 
-  done = false;
-
   constructor() { }
 
   ngOnInit(): void {
+    //this.markAsDone();
   }
 
   //Functions:
@@ -32,8 +33,13 @@ export class ItemComponent implements OnInit {
   }
   
   markAsDone():void{
-    this.done = true;
+    if(this.task.done === false){
+      this.task.done = true
+    }else{
+      this.task.done = false
+    }
     this.edit.emit(this.task)
+    console.log( this.task )
   }
 
 }

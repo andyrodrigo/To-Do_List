@@ -1,9 +1,9 @@
 <div class="d-flex flex-row justify-content-between text-black p-1 my-2 rounded " style="background-color: rgb(197,225,229)">
     <div >
-        <p class="d-flex align-items-center h-100 mx-3" [ngStyle]=" { textDecoration: done ? 'line-through' : 'none'}">{{ task.title }}</p>
+        <p class="d-flex align-items-center h-100 mx-3" [ngStyle]=" { textDecoration: task.done ? 'line-through' : 'none'}">{{ task.title }}</p>
     </div>
     <div class="d-flex flex-row">
-        <button (click)="markAsDone()" class="btn btn-success mx-1" style="width: 40px; height: 35px">
+        <button (click)="markAsDone()" [ngClass]="{'btn-success': task.done === true, 'btn-dark' : task.done === false }"class="btn mx-1" style="width: 40px; height: 35px">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
                 <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
               </svg>

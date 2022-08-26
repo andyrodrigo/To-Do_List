@@ -15,10 +15,10 @@ export class ItemListComponent implements OnInit {
   ngOnInit(): void {
     let itens: any = localStorage.getItem('tasks');
     let oldTasks = JSON.parse( itens )
-    if(!oldTasks){
-      this.tasks = [];
-    }else{
+    if(oldTasks){
       this.tasks = oldTasks;
+    }else{
+      this.tasks = [];
     }
   }
 
@@ -42,13 +42,11 @@ export class ItemListComponent implements OnInit {
 
   editTask(task: any){
     let index = this.tasks.indexOf(task);
-    this.tasks[index].done = true
+    let b = task.done 
+    console.log( b )
+    this.tasks[index].done = b
+    console.log(this.tasks[index].done )
     localStorage.setItem('tasks', JSON.stringify(this.tasks) )
-
-    //let index = this.tasks.indexOf(task);
-    //Pinçar a task dentro de tasks e mudar seu done de false para true
-    //this.tasks.filter(task, index,)   //( (task) => task.done = true);
-    //localStorage.setItem('tasks', JSON.stringify(this.tasks.filter(task, index) ) )
   }
 
 }
