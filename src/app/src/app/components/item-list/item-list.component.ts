@@ -9,6 +9,7 @@ import { ItemToDo } from '../../interfaces/item-to-do';
 export class ItemListComponent implements OnInit {
 
   tasks: Array<ItemToDo> = [];
+  showTasks: Array<ItemToDo> = [];
 
   constructor() { }
 
@@ -20,6 +21,8 @@ export class ItemListComponent implements OnInit {
     }else{
       this.tasks = [];
     }
+    console.log("update")
+    this.showTasks = this.tasks
   }
 
   //Functions:
@@ -47,6 +50,33 @@ export class ItemListComponent implements OnInit {
     this.tasks[index].done = b
     console.log(this.tasks[index].done )
     localStorage.setItem('tasks', JSON.stringify(this.tasks) )
+  }
+
+  filterBy( input: string ){    
+    this.showTasks = this.tasks.filter(function ( task ) {
+      return task.title.toLowerCase().indexOf(input.toLowerCase()) > -1
+    });
+  }
+
+  filter( option: number ){
+    switch(option){
+      case 0:
+          this.showTasks = this.tasks.filter(function ( task ) {
+          return task.done === false
+        });
+        break;
+      case 1:
+        this.showTasks = this.tasks.filter(function ( task ) {
+          return task.done === true
+        });
+        break;
+      case 2:
+        this.showTasks = this.tasks
+        break;
+      default:
+        console.log("error")
+    }
+
   }
 
 }
