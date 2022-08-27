@@ -9,27 +9,23 @@ export class HomeComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-    this.changeLanguage()
-  }
+  ngOnInit(): void {}
 
-  eng_version: boolean = true
-  appName = "TO-DO-LIST-APP"
-  welcomeMSG = "Welcome, Anderson!"
+  eng_version: boolean = false
+  appName = "APP LISTA DE TAREFAS"
+  welcomeMSG = "Bem vindo!"
 
 
   changeLanguage(){
     if(this.eng_version){
       this.eng_version = false;
       this.appName = "APP LISTA DE TAREFAS"
-      this.welcomeMSG = "Bem vindo, Anderson!"
+      this.welcomeMSG = "Bem vindo!"
     }else{
       this.eng_version = true;
       this.appName = "TO-DO-LIST-APP"
-      this.welcomeMSG = "Welcome, Anderson!"
+      this.welcomeMSG = "Welcome!"
 
     }
-    console.log( "home: " + this.eng_version)
   }
-
 }

@@ -13,13 +13,13 @@ export class ItemListComponent implements OnInit {
 
   @Input() eng_version: boolean = false ;
 
-  addButtonName = "Add"
-  filterButtonName = "Filter"
-  dropItemAllName = "ALL"
-  dropItemDoneName = "DONE"
-  dropItemUndoneName = "UNDONE"
-  searchPlaceholderName = "Search"
-  newtaskPlaceholderName = "New Task"
+  addButtonName = "Adicionar"
+  filterButtonName = "Filtrar"
+  dropItemAllName = "TODOS"
+  dropItemDoneName = "FEITOS"
+  dropItemUndoneName = "NÃO FEITOS"
+  searchPlaceholderName = "Buscar"
+  newtaskPlaceholderName = "Nova Tarefa"
 
   constructor() { }
 
@@ -32,13 +32,10 @@ export class ItemListComponent implements OnInit {
       this.tasks = [];
     }
     this.showTasks = this.tasks
-    this.changeLanguage()
-    this.changeLanguage()
   }
 
   //Functions:
   addTask( title: string ){
-    console.log( this.eng_version )
     const id = this.tasks.length + 1;
     this.tasks.push({
       id: id,
@@ -113,7 +110,5 @@ export class ItemListComponent implements OnInit {
       default:
         console.log("error")
     }
-
   }
-
 }
