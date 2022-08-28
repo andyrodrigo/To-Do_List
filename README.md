@@ -6,8 +6,6 @@
 
 <https://andy-to-do-list.netlify.app>
 
-Em breve =D
-
 ## Sobre o Projeto:
 
 > Este projeto feito em Angular é uma lista de tarefas responsiva em que o usuário pode adicionar itens, excluir, editar e marcar como feito. Os dados ficam armazenados, mesmo que o Sistema Operacional seja reiniciado.
