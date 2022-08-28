@@ -4,6 +4,8 @@
 
 ## Deploy do projeto:
 
+<https://andy-to-do-list.netlify.app>
+
 Em breve =D
 
 ## Sobre o Projeto:
