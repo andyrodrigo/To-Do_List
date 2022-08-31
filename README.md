@@ -49,7 +49,7 @@ novamente ao entrar no APP de forma persistente.
 
 ## Tecnologias_usadas_no_desenvolvimento
 
-* **JavaScript** - Linguagem de programação usada na criação do projeto
+* **TypeScript** - Linguagem de programação usada na criação do projeto
 * **HTML5** - Linguagem de marcação de texto
 * **CSS** - Estilização da Ferramenta
 * **Angular** - Framework de desenvolvimento Web Front-end
